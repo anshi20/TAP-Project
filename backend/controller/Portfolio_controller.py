@@ -37,6 +37,16 @@ def getAllHoldings():
         return jsonify(allHoldings),200
 
 
+@app.route('/all_transactions',methods=['GET'])
+def getAllTransactions():
+    
+    allTransactions=TransactionRepository.getAllTransactions()
+    if allTransactions == -1:
+        return jsonify({"error" : "couldn't fetch data"}),404
+    else:
+        return jsonify(allTransactions),200
+
+
 if __name__ == "__main__":
     app.run(debug=True)
 
