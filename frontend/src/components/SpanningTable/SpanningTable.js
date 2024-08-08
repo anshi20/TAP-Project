@@ -90,12 +90,12 @@ export default function SpanningTable() {
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="spanning table">
           <TableHead>
-            <TableRow>
+            {/* <TableRow>
               <TableCell align="center" colSpan={3} sx={{ backgroundColor: '#f0f0f0' }}>
                 Details
               </TableCell>
               <TableCell align="right" sx={{ backgroundColor: '#f0f0f0' }}>Price</TableCell>
-            </TableRow>
+            </TableRow> */}
             <TableRow>
               <TableCell
                 sx={{
