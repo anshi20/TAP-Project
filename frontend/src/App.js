@@ -33,6 +33,7 @@ function App() {
                     </Box>
                   </Box>
                   <SpanningTable />
+                  
                 </Box>
               } />
               <Route path="/assets" element={<AssetsPage />} />
