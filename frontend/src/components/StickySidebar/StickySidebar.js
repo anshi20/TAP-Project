@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'; // Import Link for routing
 import './StickySidebar.css';
 
 export default function StickySidebar() {
-  const drawerWidth = 250;
+  const drawerWidth =250;
 
   return (
     <Box sx={{ display: 'flex' }}>
