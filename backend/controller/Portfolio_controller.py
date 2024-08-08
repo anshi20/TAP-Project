@@ -21,13 +21,16 @@ def buy_holding():
         return jsonify({"error": "Couldn't buy holding due to Client Error"}), 404
     else:
         return jsonify(result.data), 200
-    return jsonify("buaienfejkmlds")
 
-@app.route('/hello',methods=['GET'])
-def sell_holding():
+
+@app.route('/all_transactions',methods=['GET'])
+def getAllTransactions():
     
-    print("dsafasd")
-    return jsonify("uisfea")
+    allTransactions=TransactionRepository.getAllTransactions()
+    if allTransactions == -1:
+        return jsonify({"error" : "couldn't fetch data"}),404
+    else:
+        return jsonify(allTransactions.data),200
 
 
 if __name__ == "__main__":

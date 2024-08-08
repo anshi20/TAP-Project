@@ -30,5 +30,18 @@ class TransactionRepository:
              return -1
 
 
+    @staticmethod
+    def getAllTransactions():
+        try:
+            conn=get_db_connection()
+            allTransactions=conn.table('transactions').select("*").execute()
+            # print(allTransactions)
+            return allTransactions
+        except Error as e:
+            return -1
+
+
+
+
 if __name__ == "__main__":
     TransactionRepository.transaction_completed({'transaction_type':'BUY','symbol' :'AAPL','name' :'apple', 'price': 240.35, 'volume': 200})
