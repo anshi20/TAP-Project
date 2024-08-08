@@ -36,7 +36,7 @@ class TransactionRepository:
             conn=get_db_connection()
             allTransactions=conn.table('transactions').select("*").execute()
             # print(allTransactions)
-            return allTransactions
+            return allTransactions.data
         except Error as e:
             return -1
 
