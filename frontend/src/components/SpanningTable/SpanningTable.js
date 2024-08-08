@@ -32,9 +32,9 @@ function subtotal(items) {
 
 // Data
 const rows = [
-  createRow('Paperclips (Box)', 100, 1.15),
-  createRow('Paper (Case)', 10, 45.99),
-  createRow('Waste Basket', 2, 17.99),
+  createRow('Microsoft', 100, 1.15),
+  createRow('Meta', 10, 45.99),
+  createRow('Google', 2, 17.99),
 ];
 
 // Calculate totals
