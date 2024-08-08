@@ -8,10 +8,10 @@ class TransactionRepository:
 
     @staticmethod
     def transaction_completed(transactional_data):
-         print(transactional_data)
+        #  print(transactional_data)
          transaction_type = transactional_data["transaction_type"]
          symbol = transactional_data["symbol"]
-        #  name = transactional_data["name"]
+         name = transactional_data["name"]
          price = transactional_data["price"]
          volume = transactional_data["volume"]
          india_tz = pytz.timezone('Asia/Kolkata')
@@ -21,7 +21,7 @@ class TransactionRepository:
              conn = get_db_connection()
              add_transaction = conn.table('transactions').insert({'transaction_type': transaction_type,
                                                                     'symbol': symbol,
-                                                                    # 'name': name,
+                                                                    'name': name,
                                                                     'price': price,                                                                   
                                                                     'volume': volume,
                                                                     'transaction_timestamp': transaction_timestamp}).execute()

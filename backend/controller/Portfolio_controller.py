@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, redirect, flash
 
 from repository.transaction_repository import TransactionRepository
+from repository.PortfolioHoldings import PortfolioHoldings
 
 app = Flask(__name__)
 
@@ -13,7 +14,8 @@ def buy_holding():
     symbol = data["symbol"]
     volume = data["volume"]
     price = data["price"]
-    result = TransactionRepository.transaction_completed({"transaction_type":transaction_type,"symbol":symbol,"volume":volume,"price":price})
+    name = data["name"]
+    result = PortfolioHoldings.buy_holding(symbol,name,volume,price)
 
     if result == -1:
         return jsonify({"error": "Couldn't buy holding due to DB error"}), 404
@@ -23,14 +25,16 @@ def buy_holding():
         return jsonify(result.data), 200
 
 
-@app.route('/all_transactions',methods=['GET'])
-def getAllTransactions():
+
+
+@app.route('/all_holdings',methods=['GET'])
+def getAllHoldings():
     
-    allTransactions=TransactionRepository.getAllTransactions()
-    if allTransactions == -1:
+    allHoldings=PortfolioHoldings.get_all_holdings()
+    if allHoldings == -1:
         return jsonify({"error" : "couldn't fetch data"}),404
     else:
-        return jsonify(allTransactions.data),200
+        return jsonify(allHoldings),200
 
 
 if __name__ == "__main__":
