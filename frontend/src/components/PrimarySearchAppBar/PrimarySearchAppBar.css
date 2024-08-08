@@ -1,0 +1,35 @@
+/* Styles for the search wrapper */
+.search {
+    position: relative;
+    border-radius: 4px; /* Adjust based on theme shape.borderRadius */
+    background-color: rgba(255, 255, 255, 0.15); /* Adjust based on theme.palette.common.white */
+  }
+  
+  .search:hover {
+    background-color: rgba(255, 255, 255, 0.25); /* Adjust based on theme.palette.common.white */
+  }
+  
+  .search-icon-wrapper {
+    padding: 0 16px; /* Adjust based on theme.spacing(0, 2) */
+    height: 100%;
+    position: absolute;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .styled-input-base {
+    color: inherit;
+    padding: 8px 8px 8px 0; /* Adjust based on theme.spacing(1, 1, 1, 0) */
+    padding-left: calc(1em + 32px); /* Adjust based on theme.spacing(4) */
+    transition: width 200ms ease-in-out; /* Adjust based on theme.transitions.create('width') */
+    width: 100%;
+  }
+  
+  @media (min-width: 960px) { /* Adjust based on theme.breakpoints.up('md') */
+    .styled-input-base {
+      width: 20ch;
+    }
+  }
+  
