@@ -17,7 +17,7 @@ const SellStockPopup = ({ setsellStockSelected, sellStockSelected, refresh, setr
         if (quantity > sellStockSelected.volume) {
             seterr("Selling quantity more than available")
         } else {
-            const response = await axios.post("http://127.0.0.1:5000/sell", { name: sellStockSelected.symbol, symbol: sellStockSelected.symbol, current_price: Number(latestPrice), volume: Number(quantity) })
+            const response = await axios.post("http://127.0.0.1:5000/sell", { name: sellStockSelected.name, symbol: sellStockSelected.symbol, current_price: Number(latestPrice), volume: Number(quantity) })
             console.log(response.data)
             if (response.data) {
                 setrefresh(!refresh)

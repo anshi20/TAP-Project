@@ -81,7 +81,7 @@ export default function SpanningTable({ data }) {
 
   return (
     <Paper sx={{ padding: '16px' }}>
-      <TextField
+      {/* <TextField
         label="Search"
         variant="outlined"
         fullWidth
@@ -89,7 +89,7 @@ export default function SpanningTable({ data }) {
         value={search}
         onChange={handleSearchChange}
         sx={{ marginBottom: '16px' }}
-      />
+      /> */}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="spanning table">
           <TableHead>

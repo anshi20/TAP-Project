@@ -56,6 +56,7 @@ export default function DropDown({ symbol, row, refresh, setrefresh }) {
                 <TableCell component="th" scope="row">
                     {row.symbol}
                 </TableCell>
+                <TableCell >{row.name}</TableCell>
                 <TableCell align="right">{row.avg_cost}</TableCell>
                 <TableCell align="right">{row.volume}</TableCell>
                 <TableCell align="right">

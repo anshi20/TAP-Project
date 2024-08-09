@@ -34,8 +34,9 @@ export default function TransactionTable() {
                     <TableHead>
                         <TableRow>
                             <TableCell>Symbol</TableCell>
-                            <TableCell align="right">Average Price</TableCell>
-                            <TableCell align="right">Volume</TableCell>
+                            <TableCell>Name</TableCell>
+                            <TableCell >Average Price</TableCell>
+                            <TableCell >Volume</TableCell>
                             {/* <TableCell align="right">Total</TableCell> */}
                         </TableRow>
                     </TableHead>
@@ -46,8 +47,9 @@ export default function TransactionTable() {
                                 <TableCell component="th" scope="row">
                                     {row.symbol}
                                 </TableCell>
-                                <TableCell align="right">{row.avg_cost}</TableCell>
-                                <TableCell align="right">{row.volume}</TableCell>
+                                <TableCell >{row.name}</TableCell>
+                                <TableCell >{row.avg_cost}</TableCell>
+                                <TableCell >{row.volume}</TableCell>
                             </TableRow>
                         )
                     })}

@@ -36,6 +36,7 @@ export default function CollapsibleTable() {
           <TableRow>
             <TableCell />
             <TableCell>Symbol</TableCell>
+            <TableCell>Name</TableCell>
             <TableCell align="right">Average Price</TableCell>
             <TableCell align="right">Volume</TableCell>
             {/* <TableCell align="right">Total</TableCell> */}
