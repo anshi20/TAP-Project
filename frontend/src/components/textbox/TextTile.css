@@ -1,0 +1,36 @@
+.text-tile {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1.1);
+    margin: 16px;
+    max-width: 300px;
+  }
+  
+  .text-tile-header {
+    margin-bottom: 12px;
+  }
+  
+  .text-tile-header h3 {
+    margin: 0;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .text-tile-content {
+    margin-bottom: 17px;
+  }
+  
+  .text-tile-content p {
+    margin: 0;
+    font-size: 1.9rem;
+    color: #555;
+  }
+  
+  .text-tile-footer p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #c51818;
+    text-align: right;
+  }
+  
