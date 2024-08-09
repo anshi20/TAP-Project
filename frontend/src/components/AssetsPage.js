@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 function AssetsPage() {
   return (
     <Container sx={{ flexGrow: 1, padding: '16px' }}>
-      <h1>Assets</h1>
+      <h1>Transactions</h1>
       
       {/* Add content or components specific to the Assets page here */}
       
