@@ -2,9 +2,10 @@ from flask import Flask, jsonify, request, redirect, flash
 
 from repository.transaction_repository import TransactionRepository
 from repository.PortfolioHoldings import PortfolioHoldings
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/buy',methods=['POST'])
 def buy_holding():
