@@ -64,7 +64,16 @@ def getAllTransactions():
         return jsonify({"error" : "couldn't fetch data"}),404
     else:
         return jsonify(allTransactions),200
+        
 
+@app.route('/stock_history/<symbol>',methods=['GET'])
+def getStockTransactions(symbol):
+    
+    stockTransactions=PortfolioHoldings.get_stock_history(symbol)
+    if stockTransactions == -1:
+        return jsonify({"error" : "couldn't fetch data"}),404
+    else:
+        return jsonify(stockTransactions),200
 
 if __name__ == "__main__":
     app.run(debug=True)
