@@ -18,6 +18,7 @@ import DropDown from './DropDown';
 
 export default function CollapsibleTable() {
   const [stockData, setstockData] = React.useState([])
+  const [refresh, setrefresh] = React.useState(false)
 
   React.useEffect(() => {
     const getStockData = async () => {
@@ -26,7 +27,8 @@ export default function CollapsibleTable() {
       setstockData(response.data)
     }
     getStockData()
-  }, [])
+  }, [refresh])
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="">
@@ -40,13 +42,13 @@ export default function CollapsibleTable() {
           </TableRow>
         </TableHead>
         {/* <TableBody> */}
-          {stockData && stockData.map((row) => {
-            console.log(row)
-            return (
-              <DropDown row={row} symbol={row.symbol} />
-            )
-          })}
-          {/* </TableBody> */}
+        {stockData && stockData.map((row) => {
+          console.log(row)
+          return (
+            <DropDown row={row} symbol={row.symbol} refresh={refresh} setrefresh={setrefresh} />
+          )
+        })}
+        {/* </TableBody> */}
       </Table>
     </TableContainer>
   );

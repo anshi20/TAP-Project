@@ -9,7 +9,7 @@ function AssetsPage() {
   React.useEffect(() => {
     const getTransactionData = async () => {
       const response = await axios.get("http://127.0.0.1:5000/all_transactions")
-      settransactionData(response.data)
+      settransactionData(response.data.reverse())
     }
     getTransactionData()
   }, [])

@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 
 const StockTable = ({ stocks, onBuyClick }) => {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer sx={{ width: 1000 }} component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
@@ -18,7 +18,6 @@ const StockTable = ({ stocks, onBuyClick }) => {
             <TableCell>Name</TableCell>
             <TableCell>Currency</TableCell>
             <TableCell>Exchange</TableCell>
-            <TableCell>Current Price</TableCell>
             <TableCell align="right">Actions</TableCell>
           </TableRow>
         </TableHead>
@@ -29,7 +28,6 @@ const StockTable = ({ stocks, onBuyClick }) => {
               <TableCell>{stock.name}</TableCell>
               <TableCell>{stock.currency}</TableCell>
               <TableCell>{stock.exchange}</TableCell>
-              <TableCell>{stock.price !== 'N/A' ? `$${stock.price}` : 'N/A'}</TableCell>
               <TableCell align="right">
                 <Button 
                   variant="contained" 

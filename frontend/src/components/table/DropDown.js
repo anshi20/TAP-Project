@@ -13,11 +13,17 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import SellStockPopup from '../SellStockPopUp';
+import Button from '@mui/material/Button';
+
+
 import axios from 'axios'
 
-export default function DropDown({ symbol, row }) {
+export default function DropDown({ symbol, row, refresh, setrefresh }) {
     const [open, setOpen] = React.useState(false);
     const [stockData, setstockData] = React.useState([])
+    const [sellStockSelected, setsellStockSelected] = React.useState()
+
 
     React.useEffect(() => {
         const getStockData = async () => {
@@ -30,6 +36,13 @@ export default function DropDown({ symbol, row }) {
 
     return (
         <TableBody>
+            {sellStockSelected && (
+                <SellStockPopup
+                    setsellStockSelected={setsellStockSelected}
+                    sellStockSelected={sellStockSelected}
+                    refresh={refresh} setrefresh={setrefresh} 
+                />
+            )}
             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
                 <TableCell>
                     <IconButton
@@ -45,6 +58,15 @@ export default function DropDown({ symbol, row }) {
                 </TableCell>
                 <TableCell align="right">{row.avg_cost}</TableCell>
                 <TableCell align="right">{row.volume}</TableCell>
+                <TableCell align="right">
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => setsellStockSelected(row)}
+                    >
+                        Sell
+                    </Button>
+                </TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>

@@ -7,6 +7,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import SellStockPopup from '../SellStockPopUp';
+
 import { visuallyHidden } from '@mui/utils';
 
 // Constants
@@ -42,7 +45,7 @@ const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
 const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
-export default function SpanningTable({data}) {
+export default function SpanningTable({ data }) {
   const [search, setSearch] = React.useState('');
   const [order, setOrder] = React.useState('asc'); // 'asc' or 'desc'
   const [orderBy, setOrderBy] = React.useState('desc'); // column to sort by
@@ -190,10 +193,16 @@ export default function SpanningTable({data}) {
                 <TableCell align="right">{row.volume}</TableCell>
                 <TableCell align="right">{row.price}</TableCell>
                 <TableCell align="right">{row.transaction_timestamp}</TableCell>
-                <TableCell align="right">{row.transaction_type}</TableCell>
+                {row.transaction_type == "BUY" ?
+                  <TableCell align="right" sx={{
+                    color: '#008000',
+                  }}>{row.transaction_type}</TableCell> :
+                  <TableCell align="right" sx={{
+                    color: '#FF0000',
+                  }}>{row.transaction_type}</TableCell>}
               </TableRow>
             ))}
-            </TableBody>
+          </TableBody>
         </Table>
       </TableContainer>
     </Paper>
