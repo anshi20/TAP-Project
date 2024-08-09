@@ -13,7 +13,7 @@ const StocksPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [open, setOpen] = useState(false);
   const [selectedStock, setSelectedStock] = useState(null);
-  const apiKey = '53f0f2a6407c465aaee989a464d20198';
+  const apiKey = '9ea112040b274b1f94dd6a08f714d4f5';
 
   useEffect(() => {
     const fetchStockData = async () => {
@@ -35,25 +35,28 @@ const StocksPage = () => {
             price: null,
           }));
 
-        // Fetch current price for each stock
-        const stocksWithPrices = await Promise.all(stocksData.map(async (stock) => {
-          try {
-            const priceResponse = await axios.get('https://api.twelvedata.com/time_series', {
-              params: {
-                apikey: apiKey,
-                symbol: stock.symbol,
-                interval: '1min',
-                outputsize: 1, // Get only the latest data
-              },
-            });
-            const latestPrice = await priceResponse.data?.values?.[0]?.close || 'N/A';
-            return { ...stock, price: latestPrice };
-          } catch {
-            return { ...stock, price: 'N/A' };
-          }
-        }));
+          setStocks(stocksData)
 
-        setStocks(stocksWithPrices);
+        // Fetch current price for each stock
+        // const stocksWithPrices = await Promise.all(stocksData.map(async (stock) => {
+        //   try {
+        //     const priceResponse = await axios.get('https://api.twelvedata.com/time_series', {
+        //       params: {
+        //         apikey: apiKey,
+        //         symbol: stock.symbol,
+        //         // interval: '1min',
+        //         outputsize: 1, // Get only the latest data
+        //       },
+        //     });
+        //     console.log(priceResponse.data)
+        //     const latestPrice = await priceResponse.data?.values?.[0]?.close || 'N/A';
+        //     return { ...stock, price: latestPrice };
+        //   } catch {
+        //     return { ...stock, price: 'N/A' };
+        //   }
+        // }));
+
+        // setStocks(stocksWithPrices);
         setLoading(false);
       } catch (error) {
         setError('Failed to fetch stock data');

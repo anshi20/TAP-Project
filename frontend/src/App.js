@@ -24,8 +24,8 @@ function App() {
               <Route path="/" element={<Main />
                 
               } />
-              <Route path="/assets" element={<AssetsPage />} />
-              <Route path="/transactions" element={<TransactionsPage />} />
+              <Route path="/assets" element={<TransactionsPage />} />
+              <Route path="/transactions" element={<AssetsPage />} />
               <Route path="/stocks" element={<StocksPage />} />
             </Routes>
           {/* </Container> */}

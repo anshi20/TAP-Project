@@ -41,7 +41,8 @@ class PortfolioHoldings:
                 if transaction_response.data:
                    new_holding = conn.table("portfolioholdings").insert({'symbol': symbol,
                                                                         'volume': volume,
-                                                                        'avg_cost': price}).execute()
+                                                                        'avg_cost': price,
+                                                                        'name' : name}).execute()
                    return new_holding
                 else:
                     return -1
