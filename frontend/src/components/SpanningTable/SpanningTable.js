@@ -42,7 +42,7 @@ const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
 const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
-export default function SpanningTable() {
+export default function SpanningTable({data}) {
   const [search, setSearch] = React.useState('');
   const [order, setOrder] = React.useState('asc'); // 'asc' or 'desc'
   const [orderBy, setOrderBy] = React.useState('desc'); // column to sort by
@@ -157,7 +157,24 @@ export default function SpanningTable() {
                 onClick={() => handleRequestSort('price')}
                 sortDirection={orderBy === 'price' ? order : false}
               >
-                Current
+                Time
+                {orderBy === 'price' ? (
+                  <span style={visuallyHidden}>
+                    {order === 'asc' ? 'sorted ascending' : 'sorted descending'}
+                  </span>
+                ) : null}
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  backgroundColor: '#e0e0e0',
+                  fontWeight: 'bold',
+                  cursor: 'pointer'
+                }}
+                onClick={() => handleRequestSort('price')}
+                sortDirection={orderBy === 'price' ? order : false}
+              >
+                Type
                 {orderBy === 'price' ? (
                   <span style={visuallyHidden}>
                     {order === 'asc' ? 'sorted ascending' : 'sorted descending'}
@@ -167,29 +184,16 @@ export default function SpanningTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {sortedRows.map((row) => (
-              <TableRow key={row.desc}>
-                <TableCell>{row.desc}</TableCell>
-                <TableCell align="right">{row.qty}</TableCell>
-                <TableCell align="right">{row.unit}</TableCell>
-                <TableCell align="right">{ccyFormat(row.price)}</TableCell>
+            {data.map((row) => (
+              <TableRow key={row.name}>
+                <TableCell>{row.name}</TableCell>
+                <TableCell align="right">{row.volume}</TableCell>
+                <TableCell align="right">{row.price}</TableCell>
+                <TableCell align="right">{row.transaction_timestamp}</TableCell>
+                <TableCell align="right">{row.transaction_type}</TableCell>
               </TableRow>
             ))}
-            {/* <TableRow>
-              <TableCell rowSpan={3} />
-              <TableCell colSpan={2}>Subtotal</TableCell>
-              <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
-            </TableRow> */}
-            {/* <TableRow>
-              <TableCell>Tax</TableCell>
-              <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
-              <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
-            </TableRow> */}
-            <TableRow>
-              <TableCell colSpan={2}>Total</TableCell>
-              <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
-            </TableRow>
-          </TableBody>
+            </TableBody>
         </Table>
       </TableContainer>
     </Paper>

@@ -6,6 +6,7 @@ import SimpleLineChart from './components/SimpleLineChart/SimpleLineChart';
 import PieChartWithCenterLabel from './components/PieChartWithCenterLabel/PieChartWithCenterLabel';
 import SpanningTable from './components/SpanningTable/SpanningTable';
 import ThreeTileRow from './components/textbox/text';
+import TransactionTable from './components/table/TransactionTable';
 
 function Main() {
   return (
@@ -18,8 +19,8 @@ function Main() {
         <Box sx={{ flex: 1 }}>
           <PieChartWithCenterLabel />
         </Box>
-      </Box>                
-      <SpanningTable />
+      </Box>    
+      <TransactionTable />
     </Container>
   );
 }
