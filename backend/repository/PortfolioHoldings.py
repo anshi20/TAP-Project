@@ -15,6 +15,15 @@ class PortfolioHoldings:
             return response.data
         except Error as e:
             return -1
+    
+    @staticmethod
+    def get_stock_history(symbol):
+        try:
+            conn = get_db_connection()
+            response = conn.table("transactions").select("*").eq('symbol',symbol).execute()
+            return response.data
+        except Error as e:
+            return -1
 
     @staticmethod
     def buy_holding(symbol,name,volume,price):
