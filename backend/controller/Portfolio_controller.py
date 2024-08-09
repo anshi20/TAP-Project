@@ -26,6 +26,24 @@ def buy_holding():
         return jsonify(result.data), 200
 
 
+@app.route('/sell', methods=['POST'])
+def sell_holding():
+    data = request.json
+    volume = data["volume"]
+    name=data["name"]
+    current_price = data["current_price"]
+    symbol = data["symbol"]
+    try:
+        result = PortfolioHoldings.sell_holding(symbol,name,volume,current_price)
+        if result:
+            return jsonify(result), 200  
+        else:
+            return jsonify({"message": "Holdings sold"})
+    except ValueError as e:
+        return jsonify(e), 400
+    except Exception as e:
+        return jsonify(e), 500
+
 
 
 @app.route('/all_holdings',methods=['GET'])
