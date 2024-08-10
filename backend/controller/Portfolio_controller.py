@@ -3,6 +3,7 @@ from flask import Flask, jsonify, request, redirect, flash
 from repository.transaction_repository import TransactionRepository
 from repository.PortfolioHoldings import PortfolioHoldings
 from flask_cors import CORS
+from repository.userStatisticsRepository import UserStatisticsRepository
 
 app = Flask(__name__)
 CORS(app)
@@ -17,7 +18,8 @@ def buy_holding():
     price = data["price"]
     name = data["name"]
     result = PortfolioHoldings.buy_holding(symbol,name,volume,price)
-
+    if result == -10:
+        return jsonify({"error": "Insufficient funds"}), 200
     if result == -1:
         return jsonify({"error": "Couldn't buy holding due to DB error"}), 404
     elif not result:
@@ -74,6 +76,26 @@ def getStockTransactions(symbol):
         return jsonify({"error" : "couldn't fetch data"}),404
     else:
         return jsonify(stockTransactions),200
+
+
+@app.route('/add_money/<amount>',methods=['GET'])
+def addMoney(amount):
+    new_money_value=UserStatisticsRepository.add_money(amount)
+    if new_money_value==-1:
+        return jsonify({"error":"money not added"}), 404
+    else:
+        return jsonify(new_money_value.data),200
+
+@app.route('/withdraw_money/<amount>',methods=['GET'])
+def withdrawMoney(amount):
+    new_money_value=UserStatisticsRepository.withdraw_money(amount)
+    if new_money_value==-1 :
+        return jsonify({"error":"money not withdrawn"}), 404
+    elif new_money_value==-2 :
+        return jsonify({"error":"not sufficient funds"}), 404
+    else:
+        return jsonify(new_money_value.data),200
+
 
 if __name__ == "__main__":
     app.run(debug=True)
