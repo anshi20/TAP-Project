@@ -27,9 +27,9 @@ class TransactionRepository:
                                                                     'volume': volume,
                                                                     'transaction_timestamp': transaction_timestamp}).execute()
              if transaction_type == 'BUY':
-                UserStatisticsRepository.withdraw_money(float(volume*price))
+                UserStatisticsRepository.withdraw_money(volume*(price))
              else :
-                UserStatisticsRepository.add_money(float(volume*price))
+                UserStatisticsRepository.add_money(volume*float(price))
 
              return add_transaction
          except Error as e:
@@ -40,7 +40,7 @@ class TransactionRepository:
     def getAllTransactions():
         try:
             conn=get_db_connection()
-            allTransactions=conn.table('transactions').select("*").execute()
+            allTransactions=conn.table('transactions').select("*").order('transaction_timestamp', desc=False).execute()
             # print(allTransactions)
             return allTransactions.data
         except Error as e:

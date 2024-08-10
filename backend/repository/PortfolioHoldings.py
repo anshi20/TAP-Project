@@ -12,7 +12,7 @@ class PortfolioHoldings:
     def get_all_holdings():
         try:
             conn = get_db_connection()
-            response = conn.table("portfolioholdings").select("*").execute()
+            response = conn.table("portfolioholdings").select("*").order('holding_id', desc=True).execute()
             return response.data
         except Error as e:
             return -1
@@ -21,7 +21,7 @@ class PortfolioHoldings:
     def get_stock_history(symbol):
         try:
             conn = get_db_connection()
-            response = conn.table("transactions").select("*").eq('symbol',symbol).execute()
+            response = conn.table("transactions").select("*").eq('symbol',symbol).order('transaction_timestamp', desc=True).execute()
             return response.data
         except Error as e:
             return -1
@@ -31,7 +31,7 @@ class PortfolioHoldings:
         try:
             conn = get_db_connection()
             current_money=conn.table('userstatistics').select("*").execute().data[0]["money"]
-            if volume*price>current_money:
+            if float(volume)*price>current_money:
                 return -10
             holding_exists = conn.table("portfolioholdings").select("*").eq('symbol',symbol).execute()
             if not holding_exists.data:
@@ -90,7 +90,7 @@ class PortfolioHoldings:
                 conn.table('portfolioholdings').delete().eq('symbol', symbol).execute()
             else:
                 new_volume = holding['volume'] - volume
-                new_avg_cost = ((holding['volume'] * holding['avg_cost']) - (volume * current_price)) / new_volume
+                new_avg_cost = float((holding['volume'] * holding['avg_cost']) - (volume * current_price)) / new_volume
 
                 conn.table('portfolioholdings').update({'volume': new_volume, 'avg_cost': new_avg_cost}).eq('symbol', symbol).execute()
             

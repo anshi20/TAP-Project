@@ -31,7 +31,7 @@ export default function StickySidebar() {
           role="presentation"
         >
           <List>
-            {['Home', 'Transactions', 'Assets', 'Stocks'].map((text, index) => (
+            {['Home', 'Transactions', 'Portfolio', 'Stocks'].map((text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemButton
                   component={Link} // Use Link component for routing

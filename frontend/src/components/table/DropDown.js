@@ -26,13 +26,15 @@ export default function DropDown({ symbol, row, refresh, setrefresh }) {
 
 
     React.useEffect(() => {
-        const getStockData = async () => {
-            const response = await axios.get(`http://127.0.0.1:5000/stock_history/${symbol}`)
-            console.log(response.data)
-            setstockData(response.data)
-        }
-        getStockData()
-    }, [])
+        // if(open){
+            const getStockData = async () => {
+                const response = await axios.get(`http://127.0.0.1:5000/stock_history/${symbol}`)
+                console.log(response.data)
+                setstockData(response.data)
+            }
+            getStockData()
+        // }
+    }, [open])
 
     return (
         <TableBody>

@@ -86,6 +86,22 @@ def addMoney(amount):
     else:
         return jsonify(new_money_value.data),200
 
+@app.route('/get_money',methods=['GET'])
+def getMoney():
+    new_money_value=UserStatisticsRepository.get_money()
+    if new_money_value==-1:
+        return jsonify({"error":"money not added"}), 404
+    else:
+        return jsonify(new_money_value),200
+
+@app.route('/get_investment',methods=['GET'])
+def getInvestment():
+    total_investment=UserStatisticsRepository.get_invested_amount()
+    if total_investment==-1:
+        return jsonify({"error":"investment not found"}), 404
+    else:
+        return jsonify(total_investment),200
+
 @app.route('/withdraw_money/<amount>',methods=['GET'])
 def withdrawMoney(amount):
     new_money_value=UserStatisticsRepository.withdraw_money(amount)

@@ -35,8 +35,31 @@ class UserStatisticsRepository:
          except Error as e:
              return -1
 
+    @staticmethod
+    def get_money():
+
+         try:
+             conn = get_db_connection()
+             current_money=conn.table('userstatistics').select("*").execute().data[0]["money"]
+            #  print(add_transaction)
+             return current_money
+         except Error as e:
+             return -1
+
+    @staticmethod
+    def get_invested_amount():
+
+         try:
+             conn = get_db_connection()
+             data = conn.table('portfolioholdings').select("avg_cost", "volume").execute()
+             total_investment = sum(row['avg_cost'] * row['volume'] for row in data.data)
+    
+             return total_investment
+         except Error as e:
+             return -1
+
 
 
 
 if __name__ == "__main__":
-    UserStatisticsRepository.withdraw_money(20)
+    UserStatisticsRepository.get_invested_amount()

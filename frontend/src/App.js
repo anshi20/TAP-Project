@@ -24,8 +24,8 @@ function App() {
               <Route path="/" element={<Main />
                 
               } />
-              <Route path="/assets" element={<TransactionsPage />} />
               <Route path="/transactions" element={<AssetsPage />} />
+              <Route path="/portfolio" element={<TransactionsPage />} />
               <Route path="/stocks" element={<StocksPage />} />
             </Routes>
           {/* </Container> */}
