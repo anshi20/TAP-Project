@@ -35,6 +35,17 @@ class UserStatisticsRepository:
          except Error as e:
              return -1
 
+    @staticmethod
+    def get_money():
+
+         try:
+             conn = get_db_connection()
+             current_money=conn.table('userstatistics').select("*").execute().data[0]["money"]
+            #  print(add_transaction)
+             return current_money
+         except Error as e:
+             return -1
+
 
 
 
