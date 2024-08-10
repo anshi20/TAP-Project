@@ -4,6 +4,7 @@ from postgrest import APIError
 from model.PortfolioHoldings import PortfolioHoldings
 from repository.database_access import get_db_connection
 from repository.transaction_repository import TransactionRepository
+from repository.userStatisticsRepository import UserStatisticsRepository
 
 class PortfolioHoldings:
 
@@ -29,6 +30,9 @@ class PortfolioHoldings:
     def buy_holding(symbol,name,volume,price):
         try:
             conn = get_db_connection()
+            current_money=conn.table('userstatistics').select("*").execute().data[0]["money"]
+            if volume*price>current_money:
+                return -10
             holding_exists = conn.table("portfolioholdings").select("*").eq('symbol',symbol).execute()
             if not holding_exists.data:
                 transaction_response = TransactionRepository.transaction_completed({

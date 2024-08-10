@@ -18,7 +18,8 @@ def buy_holding():
     price = data["price"]
     name = data["name"]
     result = PortfolioHoldings.buy_holding(symbol,name,volume,price)
-
+    if result == -10:
+        return jsonify({"error": "Insufficient funds"}), 200
     if result == -1:
         return jsonify({"error": "Couldn't buy holding due to DB error"}), 404
     elif not result:
@@ -90,6 +91,8 @@ def withdrawMoney(amount):
     new_money_value=UserStatisticsRepository.withdraw_money(amount)
     if new_money_value==-1 :
         return jsonify({"error":"money not withdrawn"}), 404
+    elif new_money_value==-2 :
+        return jsonify({"error":"not sufficient funds"}), 404
     else:
         return jsonify(new_money_value.data),200
 

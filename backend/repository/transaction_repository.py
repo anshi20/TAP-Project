@@ -3,6 +3,7 @@ import pytz
 from mysql.connector import Error
 
 from repository.database_access import get_db_connection
+from repository.userStatisticsRepository import UserStatisticsRepository
 
 class TransactionRepository:
 
@@ -25,6 +26,11 @@ class TransactionRepository:
                                                                     'price': price,                                                                   
                                                                     'volume': volume,
                                                                     'transaction_timestamp': transaction_timestamp}).execute()
+             if transaction_type == 'BUY':
+                UserStatisticsRepository.withdraw_money(float(volume*price))
+             else :
+                UserStatisticsRepository.add_money(float(volume*price))
+
              return add_transaction
          except Error as e:
              return -1
@@ -44,4 +50,4 @@ class TransactionRepository:
 
 
 if __name__ == "__main__":
-    TransactionRepository.transaction_completed({'transaction_type':'BUY','symbol' :'AAPL','name' :'apple', 'price': 240.35, 'volume': 200})
+    TransactionRepository.transaction_completed({'transaction_type':'BUY','symbol' :'AAPL','name' :'apple', 'price': 240.35, 'volume': 2000000})

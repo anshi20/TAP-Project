@@ -23,9 +23,13 @@ class UserStatisticsRepository:
     def withdraw_money(amount):
 
          try:
+            
              conn = get_db_connection()
-             current_money=conn.table('userstatistics').select("*").execute()
-             total_money=current_money.data[0]["money"]-float(amount)
+             current_money=conn.table('userstatistics').select("*").execute().data[0]["money"]
+             if float(amount)>current_money:
+                return -2
+             total_money=current_money-float(amount)
+             
              add_transaction = conn.table('userstatistics').update({'money':total_money}).eq('user_id',1).execute()
              return add_transaction
          except Error as e:
