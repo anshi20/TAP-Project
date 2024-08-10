@@ -40,7 +40,7 @@ class TransactionRepository:
     def getAllTransactions():
         try:
             conn=get_db_connection()
-            allTransactions=conn.table('transactions').select("*").execute()
+            allTransactions=conn.table('transactions').select("*").order('transaction_timestamp', desc=False).execute()
             # print(allTransactions)
             return allTransactions.data
         except Error as e:

@@ -53,7 +53,6 @@ class UserStatisticsRepository:
              conn = get_db_connection()
              data = conn.table('portfolioholdings').select("avg_cost", "volume").execute()
              total_investment = sum(row['avg_cost'] * row['volume'] for row in data.data)
-             print("Total Investment:", total_investment)
     
              return total_investment
          except Error as e:

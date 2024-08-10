@@ -12,7 +12,7 @@ class PortfolioHoldings:
     def get_all_holdings():
         try:
             conn = get_db_connection()
-            response = conn.table("portfolioholdings").select("*").execute()
+            response = conn.table("portfolioholdings").select("*").order('holding_id', desc=True).execute()
             return response.data
         except Error as e:
             return -1
@@ -21,7 +21,7 @@ class PortfolioHoldings:
     def get_stock_history(symbol):
         try:
             conn = get_db_connection()
-            response = conn.table("transactions").select("*").eq('symbol',symbol).execute()
+            response = conn.table("transactions").select("*").eq('symbol',symbol).order('transaction_timestamp', desc=True).execute()
             return response.data
         except Error as e:
             return -1
