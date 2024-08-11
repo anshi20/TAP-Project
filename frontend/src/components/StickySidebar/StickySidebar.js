@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import './StickySidebar.css';
 
 export default function StickySidebar() {
-  const drawerWidth = 250;
+  const drawerWidth = '13vw';
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -16,6 +16,8 @@ export default function StickySidebar() {
       <Box
         sx={{
           width: drawerWidth,
+          maxWidth: '200px',
+          minWidth:'100px',
           height: '100vh',
           position: 'fixed',
           top: 0,
@@ -46,7 +48,7 @@ export default function StickySidebar() {
         sx={{
           marginLeft: 0,
           flexGrow: 1,
-          padding: 20, // Add some padding around the content
+          padding: '5vw', // Add some padding around the content
         }}
       >
         {/* Your main content goes here */}

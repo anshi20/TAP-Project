@@ -42,7 +42,7 @@ const NasdaqNews = () => {
                 <p>No news articles available.</p>
             ) : (
                 <div className="news-grid">
-                    {articles.slice(0, 6).map((article, index) => (
+                    {articles.slice(0, 17).map((article, index) => (
                         <div key={index} className="news-box">
                             <h2>
                                 <a href={article.url} target="_blank" rel="noopener noreferrer">

@@ -72,7 +72,7 @@ const StocksPage = () => {
       stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
       stock.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
-    .slice(0, 10);
+    .slice(0, 100);
 
   const handleClickOpen = (stock) => {
     setSelectedStock(stock);

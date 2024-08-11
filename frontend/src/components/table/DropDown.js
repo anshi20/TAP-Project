@@ -27,14 +27,14 @@ export default function DropDown({ symbol, row, refresh, setrefresh }) {
 
     React.useEffect(() => {
         // if(open){
-            const getStockData = async () => {
-                const response = await axios.get(`http://127.0.0.1:5000/stock_history/${symbol}`)
-                console.log(response.data)
-                setstockData(response.data)
-            }
-            getStockData()
+        const getStockData = async () => {
+            const response = await axios.get(`http://127.0.0.1:5000/stock_history/${symbol}`)
+            console.log(response.data)
+            setstockData(response.data)
+        }
+        getStockData()
         // }
-    }, [open])
+    }, [])
 
     return (
         <TableBody>
@@ -42,7 +42,7 @@ export default function DropDown({ symbol, row, refresh, setrefresh }) {
                 <SellStockPopup
                     setsellStockSelected={setsellStockSelected}
                     sellStockSelected={sellStockSelected}
-                    refresh={refresh} setrefresh={setrefresh} 
+                    refresh={refresh} setrefresh={setrefresh}
                 />
             )}
             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -84,7 +84,7 @@ export default function DropDown({ symbol, row, refresh, setrefresh }) {
                                         <TableCell>Date</TableCell>
                                         <TableCell>Buy/Sell</TableCell>
                                         <TableCell align="right">Units</TableCell>
-                                        <TableCell align="right">Total price ($)</TableCell>
+                                        <TableCell align="right">Price ($)</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -93,7 +93,13 @@ export default function DropDown({ symbol, row, refresh, setrefresh }) {
                                             <TableCell component="th" scope="row">
                                                 {historyRow.transaction_timestamp}
                                             </TableCell>
-                                            <TableCell>{historyRow.transaction_type}</TableCell>
+                                            {historyRow.transaction_type == "BUY" ?
+                                                <TableCell sx={{
+                                                    color: '#008000',
+                                                }}>{historyRow.transaction_type}</TableCell> :
+                                                <TableCell sx={{
+                                                    color: '#FF0000',
+                                                }}>{historyRow.transaction_type}</TableCell>}
                                             <TableCell align="right">{historyRow.volume}</TableCell>
                                             <TableCell align="right">
                                                 {historyRow.price}

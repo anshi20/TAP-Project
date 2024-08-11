@@ -35,7 +35,7 @@ const ThreeTileRow = () => {
       {addMoneyPopUp ?
         <AddMoneyPopUp setaddMoneyPopUp={setaddMoneyPopUp} settotalmoney={settotalmoney} /> : ""}
       {withdrawMoneyPopUp ?
-        <WithdrawMoneyPopUp setwithdrawMoneyPopUp={setwithdrawMoneyPopUp} settotalmoney={settotalmoney}/> : ""}
+        <WithdrawMoneyPopUp setwithdrawMoneyPopUp={setwithdrawMoneyPopUp} settotalmoney={settotalmoney}  money={totalmoney}/> : ""}
       <TextTile
         title="Tot. Investment"
         content={formatNumber(totalinvestment)}
