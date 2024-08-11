@@ -2,29 +2,33 @@ import React, { useEffect, useState } from 'react';
 import TextTile from './TextTile';
 import './ThreeTileRow.css';
 import axios from 'axios';
-import AddMoneyPopUp from '../AddMoneyPopUp'
-import WithdrawMoneyPopUp from '../WithdrawMoneyPopUp'
+import AddMoneyPopUp from '../AddMoneyPopUp';
+import WithdrawMoneyPopUp from '../WithdrawMoneyPopUp';
 import { Button } from '@mui/material';
 
 const ThreeTileRow = () => {
   const [totalmoney, settotalmoney] = useState(0);
   const [totalinvestment, settotalinvestment] = useState(0);
-  const [addMoneyPopUp, setaddMoneyPopUp] = useState(false)
-  const [withdrawMoneyPopUp, setwithdrawMoneyPopUp] = useState(false)
+  const [addMoneyPopUp, setaddMoneyPopUp] = useState(false);
+  const [withdrawMoneyPopUp, setwithdrawMoneyPopUp] = useState(false);
 
   useEffect(() => {
     const getMoney = async () => {
       const money = await axios.get("http://127.0.0.1:5000/get_money");
-      // console.log(money.data)
-      settotalmoney(money.data)
-    }
+      settotalmoney(money.data);
+    };
     const getInvestment = async () => {
       const investment = await axios.get("http://127.0.0.1:5000/get_investment");
-      settotalinvestment(investment.data)
-    }
+      settotalinvestment(investment.data);
+    };
     getMoney();
     getInvestment();
-  }, [])
+  }, []);
+
+  // Format numbers to 2 decimal places
+  const formatNumber = (number) => {
+    return number.toFixed(2);
+  };
 
   return (
     <div className="tile-row">
@@ -34,18 +38,15 @@ const ThreeTileRow = () => {
         <WithdrawMoneyPopUp setwithdrawMoneyPopUp={setwithdrawMoneyPopUp} settotalmoney={settotalmoney}/> : ""}
       <TextTile
         title="Tot. Investment"
-        content={totalinvestment}
-      // footer="-100"
+        content={formatNumber(totalinvestment)}
       />
       <TextTile
         title="Current Value"
         content="78,886.22"
-      // footer="−581.79 (0.73%) 1D"
       />
       <TextTile
         title="Wallet"
-        content={totalmoney}
-      // footer="  ADD"
+        content={formatNumber(totalmoney)}
       />
       <Button
         variant="contained"
@@ -61,11 +62,8 @@ const ThreeTileRow = () => {
       >
         Withdraw
       </Button>
-      
     </div>
   );
 };
-
-
 
 export default ThreeTileRow;

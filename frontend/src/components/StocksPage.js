@@ -5,7 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import BuyStockPopup from './BuyStockPopup';
-
+import Container from '@mui/material/Container';
 const StocksPage = () => {
   const [stocks, setStocks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -93,7 +93,7 @@ const StocksPage = () => {
   }
 
   return (
-    <div>
+    <Container sx={{ flexGrow: 1, padding: '16px' }}>
       <h1>Stocks</h1>
       <Box mb={2}>
         <TextField 
@@ -119,7 +119,7 @@ const StocksPage = () => {
           stock={selectedStock} 
         />
       )}
-    </div>
+    </Container>
   );
 };
 
