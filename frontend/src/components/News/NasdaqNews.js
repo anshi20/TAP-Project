@@ -36,7 +36,7 @@ const NasdaqNews = () => {
     if (error) return <div className="news-error">{error}</div>;
 
     return (
-        <div className="news-container">
+        <div className="news-container" >
             <h1>NASDAQ News</h1>
             {articles.length === 0 ? (
                 <p>No news articles available.</p>

@@ -12,7 +12,7 @@ import './PrimarySearchAppBar.css'; // Ensure the path is correct
 
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = useState(null);
-  const tealMode = true; // Set tealMode to true for default teal theme
+  const tealMode = false; // Ensure light theme
 
   const isMenuOpen = Boolean(anchorEl);
 
@@ -23,21 +23,21 @@ export default function PrimarySearchAppBar() {
     palette: {
       mode: tealMode ? 'dark' : 'light',
       primary: {
-        main: '#008080', // Teal for primary color
+        main: '#0747a1', // White for primary color
       },
       secondary: {
-        main: '#4db6ac', // Lighter teal for secondary color
+        main: '#f5f5f5', // Very light gray for secondary color
       },
       background: {
-        default: '#e0f2f1', // Light teal background
-        paper: '#b2dfdb', // Medium-light teal for paper elements
+        default: '#ffffff', // White background
+        paper: '#f5f5f5', // Light gray for paper elements
       },
       text: {
-        primary: '#004d40', // Darker teal for primary text
-        secondary: '#00796b', // Slightly lighter teal for secondary text
-        disabled: '#80cbc4', // Lighter teal for disabled text
+        primary: '#000000', // Black for primary text
+        secondary: '#333333', // Dark gray for secondary text
+        disabled: '#bdbdbd', // Gray for disabled text
       },
-      divider: '#004d40', // Divider color in teal mode
+      divider: '#e0e0e0', // Light gray for dividers
     },
     typography: {
       fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
