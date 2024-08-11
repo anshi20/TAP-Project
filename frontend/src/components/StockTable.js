@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 
 const StockTable = ({ stocks, onBuyClick }) => {
   return (
-    <TableContainer sx={{ width: 1000 }} component={Paper}>
+    <TableContainer sx={{ width: 1150 }} component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
